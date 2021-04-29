@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Dash</title>
+    <link href="https://www.murph9.com/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        * {
+            font-family: Segoe ui, Helvetica, sans-serif;
+        }
+
+        html {
+            background: url('https://www.murph9.com/assets/images/Field_line_simulation_2.jpg') no-repeat 0 0;
+            background-color: white;
+            background-position: center top;
+            border-radius: 0; /*prevent rounded corners on everything*/
+        }
+
+        body {
+            background-color: rgba(0,0,0,0);
+            margin: 0px;
+        }
+        
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .transparent-div {
+            background-color: rgba(255, 255, 255, 0.91);
+        }
+
+        #clock {
+            padding: 0.2em;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #272727;
+        }
+        
+        .inline {
+            display: inline-block;
+        }
+        
+        .bookmark-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 50%;
+            margin: 1em 0em;
+        }
+        
+        @media only screen and (max-width: 960px) {
+            .container {
+                height: auto;
+            }
+            .container > .bookmark-container {
+                flex-direction: column;
+                width: 60%;
+            }
+            .bookmark-container > .bookmark-set {
+                width: auto;
+                margin: 1em 0em;
+            }
+        }
+        
+        .bookmark-set {
+            padding: 1em;
+            background-color: rgba(255, 255, 255, 0.91);
+            font-size: .85rem;
+            width: 25%;
+            height: 10em;
+            margin: 0em .5em;
+        }
+        .bookmark-inner-container {
+            overflow-y: scroll;
+            height: 80%;
+            vertical-align: top;
+        }
+        .bookmark-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: black;
+            margin: 0em 0em .35em 0em;
+        }
+        .bookmark {
+            text-decoration: none;
+            color: #666666;
+            display: block;
+            margin: .5em 0em;
+        }
+        .bookmark:hover {
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <!-- layout and design taken from https://startpages.github.io/startpages/simplicity-jaredk3nt/ -->
+    <div class="container">
+        <div id="heading" class='transparent-div'>Murph9.com Dashboard</div>
+        <div id="clock" class='transparent-div'></div>
+        <div class="bookmark-container">
+            <div class="bookmark-set">
+                <div class="bookmark-title">Sites</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://www.murph9.com/" target="_blank">main site</a>
+                    <a class="bookmark" href="https://blog.murph9.com/" target="_blank">blog</a>
+                    <a class="bookmark" href="https://base.murph9.com/" target="_blank">here</a>
+                    <a class="bookmark" href="https://me.murph9.com/" target="_blank">me</a>
+                </div>
+            </div>
+            <div class="bookmark-set">
+                <div class="bookmark-title">Me</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://www.murph9.com/info/" target="_blank">site Info</a>
+                    <a class="bookmark" href="https://www.youtube.com/user/Murph09y" target="_blank">youtube</a>
+                </div>
+            </div>
+            <div class="bookmark-set">
+                <div class="bookmark-title">Other</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://u5gs8u439d.execute-api.ap-southeast-2.amazonaws.com/default/minecraft-server-info" target="_blank">minecraft server</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get current time and format
+        function getTime() {
+            const date = new Date();
+            const min = date.getMinutes();
+            const sec = date.getSeconds();
+            const hour = date.getHours();
+
+            return "" + 
+                (hour < 10 ? ("0" + hour) : hour) + ":" + 
+                (min < 10 ? ("0" + min) : min) + ":" + 
+                (sec < 10 ? ("0" + sec) : sec);
+        }
+
+        window.onload = () => {
+            document.getElementById("clock").innerHTML = getTime();
+            setInterval( () => {
+                document.getElementById("clock").innerHTML = getTime();
+            }, 500);
+        }
+    </script>
+</body>
+</html>

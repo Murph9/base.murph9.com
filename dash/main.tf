@@ -10,6 +10,7 @@ terraform {
 
 provider "aws" {
     region = "ap-southeast-2"
+    profile = "jake"
 }
 
 data "aws_region" "current" {}
